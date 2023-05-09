@@ -1,18 +1,16 @@
-import React, { createContext } from 'react'
-import { theme } from './theme';
+import React, { createContext, useContext } from 'react'
+import { theme } from './theme'
 
-
-type ThemeContextProviderProps={
-    children :  React.ReactNode
+interface ThemeContextProvider {
+    children:React.ReactNode
 }
+export const ThemeContext =createContext(theme)
+function ThemeContextProvider({children}:ThemeContextProvider) {
 
-export const  ThemeContext = createContext(theme);
-function ThemeContextProvider({children}: ThemeContextProviderProps) {
 
-    return (
-        <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    return (<ThemeContext.Provider value={theme}></ThemeContext.Provider>
+        
     )
 }
 
 export default ThemeContextProvider
-

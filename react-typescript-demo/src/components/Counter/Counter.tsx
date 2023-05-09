@@ -1,44 +1,47 @@
 import React, { useReducer } from 'react'
 
-interface Props { }
-type counterState = {
-    count: number
-}
-type counterAction = UpdateAction | resetAction
-type UpdateAction = {
-    type: 'increment' | 'decrement'
-    payload: number
-}
-type resetAction = {
-    type: 'reset'
-}
-const initialState = { count: 0 }
+interface Props {}
 
-function reducer(state: counterState, action: counterAction) {
-    switch (action.type) {
+interface counterState {
+    count : number
+}
+
+type counterAction = updateAction|resetAction
+interface updateAction {
+    type: 'increment'|'decrement',
+    payload: number
+
+}
+interface resetAction {
+    type: 'reset',
+
+}
+
+const initialState={count:0}
+
+function reducer(state:counterState,action:counterAction){
+    switch(action.type){
         case 'increment':
-            return { count: state.count + action.payload }
-        case 'decrement':
-            return { count: state.count - action.payload }
-        case 'reset':
-            return initialState
-        default:
-            return state
+            return {count :state.count +action.payload}
+            case 'decrement':
+            return {count :state.count -action.payload}
+            case 'reset':
+                return initialState
+default:
+    return state
     }
 }
 
 function Counter(props: Props) {
-    const { } = props
-    const [state, dispatch] = useReducer(reducer, initialState);
-    return (<>
-        <div>
-            Count: {state.count}
-            <button onClick={() => dispatch({ type: 'increment', payload: 10 })}>Increment 10</button>
-            <button onClick={() => dispatch({ type: 'decrement', payload: 10 })}>Decrement 10</button>
-            <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-        </div>
-    </>
-
+    const {} = props
+const [state,dispatch]=useReducer(reducer,initialState)
+    return (<div>
+        Count: {state.count}
+        <button onClick={()=>dispatch({type:'increment', payload:10})}>Increment</button>
+        <button onClick={()=>dispatch({type:'decrement' ,payload:10})}>Decrement</button>
+        <button onClick={()=>dispatch({type:'reset'})}>Reset</button>
+    </div>
+        
     )
 }
 
